@@ -14,8 +14,9 @@ export interface Game {
     name: string;
     background_image: string
     parent_platforms: {platform:Platform}[]
-    metacritic
-: number;
+    metacritic: number;
+    rating_top:number;
+    rating:number;
   } 
   
 
@@ -30,6 +31,7 @@ export interface Game {
           platforms: gameQuery.platform?.id,
           ordering: gameQuery.sortOrder,
           search: gameQuery.searchText,
+          
         }
       }, 
       [gameQuery]
