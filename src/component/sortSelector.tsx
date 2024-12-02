@@ -1,32 +1,42 @@
 import {
-    MenuContent,
-    MenuItem,
-    MenuRoot,
-    MenuTrigger,
-  } from "@/components/ui/menu";
-  import { Platform } from "@/hooks/useGames";
-  import usePlatforms from "@/hooks/usePlatforms";
-  import { Button } from "@chakra-ui/react";
-  
+  MenuContent,
+  MenuItem,
+  MenuRoot,
+  MenuTrigger,
+} from "@/components/ui/menu";
+import { Button } from "@chakra-ui/react";
 
-const sortSelector = () => {
-    return (
-        <MenuRoot>
-          <MenuTrigger asChild>
-            <Button variant="outline" size="sm">
-              order by : rel
-            </Button>
-          </MenuTrigger>
-          <MenuContent>
-            
-            <MenuItem value="rename">Rename</MenuItem>
-            <MenuItem value="rename">Rename</MenuItem>
-            <MenuItem value="rename">Rename</MenuItem>
-            <MenuItem value="rename">Rename</MenuItem>
-            <MenuItem value="rename">Rename</MenuItem>
-          </MenuContent>
-        </MenuRoot>
-      );
+interface Props{
+  onSelectSortOrder: (sortOrder:string) => void
+  sortOrder: string
 }
 
-export default sortSelector
+const sortSelector = ({onSelectSortOrder, sortOrder} :Props) => {
+  const sortOrders = [
+    { value: "", label: "Relevance" },
+    { value: "-added", label: "Date added" },
+    { value: "name", label: "Release date" },
+    { value: "-metacritic", label: "Popularity" },
+    { value: "-metacritic", label: "Popularity" },
+    { value: "-rating", label: "Average rating" },
+  ];
+  const currnetSortOrder = sortOrder .find(order => order.value === sortOrder)
+  return (
+    <MenuRoot>
+      <MenuTrigger asChild>
+        <Button variant="outline" size="sm">
+          order by : {currnetSortOrder?.label || 'Relevance'}
+        </Button>
+      </MenuTrigger>
+      <MenuContent>
+        {sortOrders.map((order) => (
+          <MenuItem onClick ={()=> onSelectSortOrder(order.value)} key={order.value} value={order.value}>
+            {order.label}
+          </MenuItem>
+        ))}
+      </MenuContent>
+    </MenuRoot>
+  );
+};
+
+export default sortSelector;
