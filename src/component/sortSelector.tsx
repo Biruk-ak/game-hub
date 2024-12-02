@@ -20,7 +20,7 @@ const sortSelector = ({onSelectSortOrder, sortOrder} :Props) => {
     { value: "-metacritic", label: "Popularity" },
     { value: "-rating", label: "Average rating" },
   ];
-  const currnetSortOrder = sortOrder .find(order => order.value === sortOrder)
+  const currnetSortOrder = sortOrders.find(order => order.value === sortOrder)
   return (
     <MenuRoot>
       <MenuTrigger asChild>
