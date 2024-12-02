@@ -17,7 +17,6 @@ const sortSelector = ({onSelectSortOrder, sortOrder} :Props) => {
     { value: "-added", label: "Date added" },
     { value: "name", label: "Release date" },
     { value: "-metacritic", label: "Popularity" },
-    { value: "-metacritic", label: "Popularity" },
     { value: "-rating", label: "Average rating" },
   ];
   const currnetSortOrder = sortOrders.find(order => order.value === sortOrder)
